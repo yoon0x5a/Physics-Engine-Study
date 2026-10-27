@@ -2,7 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 
-// 창 크기가 변경될 때 뷰포트 크기를 맞추는 콜백 함수: 뷰포트는 별도문서에 설명
+// 창 크기가 변경될 때 뷰포트 크기를 맞추는 콜백 함수: 뷰포트는 별도문서에 설명(ViewPort.md)
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
 }
@@ -30,7 +30,7 @@ int main() {
         return -1;
     }
 
-    // 메인 루프(각 단계의 구성 이유 별도문서에 설명)
+    // 메인 루프(각 단계의 구성 이유 별도문서에 설명, MainLoop.md)
     while (!glfwWindowShouldClose(window)) {
         // 1. 입력 처리 (ESC를 누르면 창 닫기)
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
