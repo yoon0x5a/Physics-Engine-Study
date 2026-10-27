@@ -1,14 +1,33 @@
 1단계: 핵심 코어 및 시각화 프레임워크 구축 (현재 ~ 다가오는 겨울방학)
-  OpenGL 기반 렌더링 환경 구축: 현재 수강 중인 컴퓨터그래픽스 지식을 활용해 물체의 위치(Transform)와 회전을 렌더링하는 기본 환경을 만듭니다.
-  C++ 아키텍처 및 커스텀 메모리 관리: 매 프레임 발생하는 객체 생성/소멸 오버헤드를 줄이기 위해 메모리 풀(Memory Pool)이나 블록 할당자(Allocator)를 직접 C++로 구현합니다.
-    - 물리엔진은 매 프레임 수많은 물리 객체와 충돌 접촉점(Contact Point)이 생성되고 소멸하므로, 기본 new/delete를 사용하면 오버헤드와 메모리 파편화가 발생합니다.
-  데이터 지향 설계(DoD): CPU 캐시 히트율을 높이기 위해 데이터를 배열 형태로 모으는(SoA) 구조를 적용해 봅니다.
+  OpenGL 기반 렌더링 환경 구축: 물체의 위치(Transform), 회전 렌더링 - 기본 환경, 컴퓨터그래픽스 수업 응용
+  C++ 아키텍처 및 커스텀 메모리 관리: 메모리 풀(Memory Pool), 블록 할당자(Allocator) - 객체 생성/소멸 오버헤드 줄이기 
+    - 매 프레임 수많은 물리 객체와 충돌 접촉점(Contact Point)생성/소멸, new/delete - 오버헤드, 메모리 파편화 발생
+  데이터 지향 설계(DoD): 데이터를 배열 형태로 모으는(SoA) 구조 - CPU 캐시 히트율 높이기 
 
 2단계: 기하학 알고리즘 및 3D 동역학 구현 (4학년 1학기)
-  고급 충돌 감지 알고리즘 구현: 3D 환경의 충돌 감지 핵심인 GJK(Gilbert-Johnson-Keerthi) 및 EPA(Expanding Polytope Algorithm) 알고리즘을 C++로 구현합니다.
-  CAD 특화 기능 개발 (포트폴리오 차별화): 솔리드웍스 사용 경험을 살려, 2D 스케치를 입력받아 3D로 돌출(Extrude)하거나 회전(Revolve)시키는 간단한 파라메트릭 모델러를 구현해 봅니다. 또한, 두 형상이 겹쳤을 때 간섭 체적을 계산하는 정밀 간섭 검사 툴을 개발합니다.
-  제약 조건 솔버(Constraint Solver): 물체의 겹침을 해결하거나, 부품 조립 시 면과 면을 일치시키는(Mate) 수학적 구속조건 솔버를 작성합니다.
+  고급 충돌 감지 알고리즘 구현: GJK(Gilbert-Johnson-Keerthi), EPA(Expanding Polytope Algorithm) 알고리즘 - 3D 환경의 충돌 감지 핵심
+  CAD 특화 기능 개발 (포트폴리오 차별화): 2D 스케치 입력, 3D로 돌출(Extrude), 회전(Revolve)시키는 간단한 파라메트릭 모델러 - 솔리드웍스 사용 경험. 정밀 간섭 검사 툴 - 두 형상이 겹쳤을 때 간섭 체적 계산
+  제약 조건 솔버(Constraint Solver): 물체의 겹침 해결, 부품 조립 시 면과 면을 일치시키는(Mate) 수학적 구속조건 솔버
 
 3단계: 성능 한계 돌파 및 포트폴리오 완성 (4학년 2학기 ~ 취업 준비)
-  SIMD 및 멀티스레딩 최적화: 컴퓨터구조에서 배운 이론을 바탕으로 대량의 벡터/행렬 연산에 SIMD 내장 함수를 적용하고, std::thread를 활용해 넓은 영역의 충돌 감지를 병렬 처리합니다.
-  수치화된 포트폴리오 작성: 최적화 전후의 프레임레이트(FPS)나 연산 시간(ms) 변화를 수치화하여 GitHub README에 상세히 기록하고 기술 데모 영상을 제작합니다.
+  SIMD 및 멀티스레딩 최적화: 대량의 벡터/행렬 연산에 SIMD 내장 함수 적용, std::thread로 넓은 영역의 충돌 감지 병렬 처리 - 컴퓨터구조에서 배운 이론 바탕 
+  수치화된 포트폴리오 작성: 최적화 전후 프레임레이트(FPS), 연산 시간(ms) 변화 수치화. GitHub README에 기록, 기술 데모 영상 제작.
+
+하면 좋을 것들
+  모던 C++ 기능: 메모리 관리(스마트 포인터), 멀티스레딩, 템플릿 메타 프로그래밍 등 C++11/14/17 이상의 모던 C++ 기능.
+  수학 라이브러리 직접 구현: 벡터, 행렬, 쿼터니언(Quaternion) 연산을 처리하는 나만의 수학 라이브러리
+
+필수 학습 개념
+  B-Rep (Boundary Representation): 곡면, 모서리, 위상(Topology) 정보로 3D 형상을 정의하는 CAD의 핵심 데이터 구조입니다.
+  NURBS 및 베지에 곡선: 자유 곡면을 수학적으로 표현하고 교차점을 계산하는 기하학입니다.
+  기구학(Kinematics) 및 수치 해석: 물리적 움직임과 구속 조건을 수학적으로 풀어내는 역량입니다.
+
+추천 도서 및 이론 자료
+  The NURBS Book (Les Piegl, Wayne Tiller 저): CAD 및 정밀 곡면 모델링 분야의 표준 교과서입니다.
+  Computational Geometry: Algorithms and Applications (Mark de Berg 저): 충돌 검사, 보로노이 다이어그램 등을 다루는 계산 기하학 바이블입니다.
+  Geometric and Solid Modeling (Christoph M. Hoffmann 저): 고체 모델링의 수학적/위상적 원리를 다룹니다.
+
+오픈소스 코드 분석 (GitHub)
+  Open CASCADE Technology (OCCT): 전 세계적으로 쓰이는 오픈소스 C++ 3D CAD/CAM 커널로, B-Rep 및 불리언 연산 실무 코드를 뜯어볼 수 있습니다 (dev.opencascade.org).
+  FreeCAD: OCCT 커널 기반의 오픈소스 CAD로, GUI와 커널 연동 방식을 학습하기 좋습니다.
+  Jolt Physics, Box2D, Bullet Physics: 글로벌 수준의 물리엔진 소스코드와 아키텍처를 참고할 수 있습니다.
